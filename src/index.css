@@ -1,0 +1,125 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    /* ── Light Theme (Negativ.in inspired) ── */
+    --color-bg: #f9f9f7;
+    --color-surface: #ffffff;
+    --color-surface-2: #f3f3f0;
+    --color-border: #e0dfd8;
+    --color-border-dashed: #c8c7bf;
+    --color-primary: #0a0a0a;
+    --color-primary-glow: rgba(10, 10, 10, 0.06);
+    --color-accent: #1a6b4a;
+    --color-accent-glow: rgba(26, 107, 74, 0.08);
+    --color-danger: #c0392b;
+    --color-danger-glow: rgba(192, 57, 43, 0.08);
+    --color-warning: #b7700d;
+    --color-warning-glow: rgba(183, 112, 13, 0.08);
+    --color-text: #0a0a0a;
+    --color-text-muted: #6b6b63;
+    --color-text-dim: #b0afa8;
+
+    /* ── Fonts ── */
+    --font-display: 'Syne', sans-serif;
+    --font-body: 'DM Sans', sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+
+    /* ── Radius ── */
+    --radius-sm: 4px;
+    --radius-md: 6px;
+    --radius-lg: 8px;
+    --radius-xl: 12px;
+
+    /* ── Shadows ── */
+    --shadow-card: 0 1px 4px rgba(0, 0, 0, 0.06), 0 4px 16px rgba(0, 0, 0, 0.04);
+    --shadow-hover: 0 2px 8px rgba(0, 0, 0, 0.1);
+
+    /* ── Negativ corner size ── */
+    --corner-size: 8px;
+    --corner-weight: 2px;
+  }
+}
+
+@layer base {
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    font-family: var(--font-body);
+    font-size: 15px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+  }
+
+  code, pre { font-family: var(--font-mono); }
+
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: var(--color-surface-2); }
+  ::-webkit-scrollbar-thumb { background: var(--color-border); border-radius: 2px; }
+
+  input, select, textarea {
+    color-scheme: light;
+  }
+}
+
+@layer utilities {
+  /* ── Dashed card (Negativ style) ── */
+  .card-dashed {
+    background: var(--color-surface);
+    border: 1.5px dashed var(--color-border-dashed);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-card);
+  }
+
+  /* ── Corner bracket button (Negativ style) ── */
+  .btn-corner {
+    position: relative;
+    background: transparent;
+    border: 1.5px dashed var(--color-border-dashed);
+    color: var(--color-text);
+  }
+
+  .btn-corner::before,
+  .btn-corner::after {
+    content: '';
+    position: absolute;
+    width: var(--corner-size);
+    height: var(--corner-size);
+  }
+
+  .btn-corner::before {
+    top: -var(--corner-weight);
+    left: -var(--corner-weight);
+    border-top: var(--corner-weight) solid var(--color-primary);
+    border-left: var(--corner-weight) solid var(--color-primary);
+  }
+
+  .btn-corner::after {
+    bottom: -var(--corner-weight);
+    right: -var(--corner-weight);
+    border-bottom: var(--corner-weight) solid var(--color-primary);
+    border-right: var(--corner-weight) solid var(--color-primary);
+  }
+
+  /* ── Ruled divider ── */
+  .ruled {
+    border-top: 1px dashed var(--color-border-dashed);
+  }
+
+  /* ── Subtle text gradient ── */
+  .text-gradient {
+    background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+}
