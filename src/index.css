@@ -2,7 +2,7 @@
 
 @layer base {
   :root {
-    /* ── Light Theme (Negativ.in inspired) ── */
+    /* ── Light Theme ── */
     --color-bg: #f9f9f7;
     --color-surface: #ffffff;
     --color-surface-2: #f3f3f0;
@@ -35,7 +35,7 @@
     --shadow-card: 0 1px 4px rgba(0, 0, 0, 0.06), 0 4px 16px rgba(0, 0, 0, 0.04);
     --shadow-hover: 0 2px 8px rgba(0, 0, 0, 0.1);
 
-    /* ── Negativ corner size ── */
+    /* ── corner size ── */
     --corner-size: 8px;
     --corner-weight: 2px;
   }
@@ -72,7 +72,7 @@
 }
 
 @layer utilities {
-  /* ── Dashed card (Negativ style) ── */
+  /* ── Dashed card ── */
   .card-dashed {
     background: var(--color-surface);
     border: 1.5px dashed var(--color-border-dashed);
@@ -80,7 +80,7 @@
     box-shadow: var(--shadow-card);
   }
 
-  /* ── Corner bracket button (Negativ style) ── */
+  /* ── Corner bracket button ── */
   .btn-corner {
     position: relative;
     background: transparent;
