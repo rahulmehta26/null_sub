@@ -1,6 +1,6 @@
 import { cn } from "../../utils/cn";
 
-const TrendingUp = ({ className }: { className?: string }) => {
+const TrendingUp = ({ className, ...props }: { className?: string }) => {
     return (
         <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -11,6 +11,7 @@ const TrendingUp = ({ className }: { className?: string }) => {
             strokeLinecap="round"
             strokeLinejoin="round"
             className={cn("icons", className)}
+            {...props}
         >
             <path stroke="none" d="M0 0h24v24H0z" fill="none" />
             <path d="M3 17l6 -6l4 4l8 -8" />
