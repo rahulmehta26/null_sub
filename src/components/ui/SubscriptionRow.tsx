@@ -105,7 +105,7 @@ const SubscriptionRow = memo(({ subscription, onDelete }: SubscriptionRowProps) 
 
             <div className="flex items-center gap-2">
                 <Button variant="ghost" size="sm"
-                    // onClick={handleEdit}
+                    onClick={handleEdit}
                     icon={<Pencil />}>
                     Edit
                 </Button>
