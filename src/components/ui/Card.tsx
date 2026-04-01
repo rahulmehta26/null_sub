@@ -15,11 +15,16 @@ interface CardProps {
     animate?: boolean;
 }
 
-const ACCENT_COLORS = {
-    none: 'var(--color-border-dashed)',
-    danger: 'rgba(192,57,43,0.4)',
-    warning: 'rgba(183,112,13,0.4)',
-    accent: 'rgba(26,107,74,0.4)',
+const ACCENT_CLASSES = {
+    none: "border-(--color-border-dashed)",
+    danger: "border-[rgba(192,57,43,0.4)]",
+    warning: "border-[rgba(183,112,13,0.4)]",
+    accent: "border-[rgba(26,107,74,0.4)]",
+};
+
+const VARIANT_CLASSES = {
+    solid: "border border-(--color-border-dashed)",
+    dashed: "border-[1.5px] border-dashed",
 };
 
 const Card = memo(({
@@ -31,16 +36,6 @@ const Card = memo(({
     onClick,
     animate = true,
 }: CardProps) => {
-    const borderColor = ACCENT_COLORS[accent];
-    const isDashed = variant === 'dashed';
-
-    const style: React.CSSProperties = {
-        background: 'var(--color-surface)',
-        border: isDashed
-            ? `1.5px dashed ${borderColor}`
-            : `1px solid ${borderColor}`,
-        boxShadow: hoverable ? undefined : 'var(--shadow-card)',
-    };
 
     return (
         <motion.div
@@ -48,10 +43,11 @@ const Card = memo(({
             whileHover={hoverable ? { ...hoverScale, boxShadow: 'var(--shadow-hover)' } : undefined}
             whileTap={hoverable && onClick ? tapScale : undefined}
             onClick={onClick}
-            style={style}
             className={cn(
-                'relative  p-5',
-                hoverable && 'cursor-pointer',
+                "relative p-5 bg-(--color-surface) shadow-(--shadow-card)",
+                VARIANT_CLASSES[variant],
+                ACCENT_CLASSES[accent],
+                hoverable && "cursor-pointer",
                 className
             )}
         >
