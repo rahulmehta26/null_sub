@@ -14,29 +14,29 @@ const BADGE_STYLES: Record<
     { bg: string; color: string; border: string }
 > = {
     active: {
-        bg: 'var(--color-accent-glow)',
-        color: 'var(--color-accent)',
-        border: 'rgba(0,229,176,0.2)',
+        bg: 'bg-(--color-accent-glow)',
+        color: 'text-(--color-accent)',
+        border: 'border-[rgba(0,229,176,0.2)]',
     },
     unused: {
-        bg: 'var(--color-danger-glow)',
-        color: 'var(--color-danger)',
-        border: 'rgba(255,77,106,0.2)',
+        bg: 'bg-(--color-danger-glow)',
+        color: 'text-(--color-danger)',
+        border: 'border-[rgba(255,77,106,0.2)]',
     },
     expiring: {
-        bg: 'var(--color-warning-glow)',
-        color: 'var(--color-warning)',
-        border: 'rgba(245,166,35,0.2)',
+        bg: 'bg-(--color-warning-glow)',
+        color: 'text-(--color-warning)',
+        border: 'border-[rgba(245,166,35,0.2)]',
     },
     cancelled: {
-        bg: 'rgba(107,127,158,0.1)',
-        color: 'var(--color-text-muted)',
-        border: 'rgba(107,127,158,0.2)',
+        bg: 'bg-[rgba(107,127,158,0.1)]',
+        color: 'text-(--color-text-muted)',
+        border: 'border-[rgba(107,127,158,0.2)]',
     },
     default: {
-        bg: 'var(--color-primary-glow)',
-        color: 'var(--color-primary)',
-        border: 'rgba(79,142,247,0.2)',
+        bg: 'bg-(--color-primary-glow)',
+        color: 'text-(--color-primary)',
+        border: 'border-[rgba(79,142,247,0.2)]',
     },
 };
 
@@ -47,15 +47,13 @@ const Badge = memo(
         return (
             <span
                 className={cn(
-                    'inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold',
-                    className
+                    'inline-flex tracking-[0.02em] items-center px-2.5 py-0.5 rounded-full text-xs font-semibold',
+                    className,
+                    style.bg,
+                    style.color,
+                    style.border,
                 )}
-                style={{
-                    background: style.bg,
-                    color: style.color,
-                    border: `1px solid ${style.border}`,
-                    letterSpacing: '0.02em',
-                }}
+
             >
                 {children}
             </span>
