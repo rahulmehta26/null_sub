@@ -4,10 +4,15 @@ import { motion } from 'motion/react';
 import PlusCircle from '../icons/PlusCircle';
 import { useSubscriptionStore } from '../../store/useSubscriptionStore';
 import { useAlerts } from '../../hooks/useAlerts';
-import { BarChart } from 'recharts';
+import CreditCard from '../icons/CreditCard';
+import DashboardIcon from '../icons/DashboardIcon';
+import { navItemVariants } from '../animations/variants';
+import BarChart from '../icons/BarChart';
+import { Corners } from '../ui/Corners';
+import { cn } from '../../utils/cn';
 
 const NAV_ITEMS = [
-    { label: 'Dashboard', path: '/dashboard', icon: LayoutDashboard },
+    { label: 'Dashboard', path: '/dashboard', icon: DashboardIcon },
     { label: 'Subscriptions', path: '/subscriptions', icon: CreditCard },
     { label: 'Add New', path: '/add', icon: PlusCircle },
     { label: 'Analytics', path: '/analytics', icon: BarChart },
@@ -27,11 +32,7 @@ const Sidebar = memo(() => {
 
     return (
         <aside
-            className="fixed left-0 top-0 h-screen w-64 flex flex-col z-40"
-            style={{
-                background: 'var(--color-surface)',
-                borderRight: '1.5px dashed var(--color-border-dashed)',
-            }}
+            className="fixed bg-(--color-surface) border-r-[1.5px] border-dashed border-(--color-border-dashed) left-0 top-0 h-screen w-64 flex flex-col z-40"
         >
             <motion.div
                 initial={{ opacity: 0, y: -10 }}
@@ -40,25 +41,23 @@ const Sidebar = memo(() => {
                 className="px-6 py-7 flex items-center gap-3"
             >
                 <div
-                    className="w-8 h-8 rounded-lg flex items-center justify-center"
-                    style={{ background: 'var(--color-primary-glow)', border: '1px solid var(--color-primary)' }}
+                    className="w-8 h-8 rounded-lg bg-(--color-primary-glow) border-[1px] border-[--color-primary]  flex items-center justify-center"
                 >
-                    <Zap size={16} style={{ color: 'var(--color-primary)' }} />
+                    n
                 </div>
                 <div>
                     <h1
-                        className="text-lg font-bold tracking-tight"
-                        style={{ fontFamily: 'var(--font-display)', color: 'var(--color-text)' }}
+                        className="text-lg font-bold text-(--color-text) font-(--font-display) tracking-tight"
                     >
                         NullSub
                     </h1>
-                    <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>
+                    <p className="text-xs text-(--color-text-muted)">
                         Null the waste.
                     </p>
                 </div>
             </motion.div>
 
-            <div className="mx-4 h-px" style={{ background: 'var(--color-border)' }} />
+            <div className="mx-4 bg-(--color-border) h-px" />
 
             <nav className="flex-1 px-3 py-4 flex flex-col gap-1">
                 {NAV_ITEMS.map((item, i) => {
@@ -75,20 +74,24 @@ const Sidebar = memo(() => {
                             onClick={handleNav(item.path)}
                             whileHover={{ x: 4, transition: { duration: 0.2 } }}
                             whileTap={{ scale: 0.97 }}
-                            className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-left transition-colors relative"
-                            style={{
-                                background: isActive ? 'var(--color-primary-glow)' : 'transparent',
-                                color: isActive ? 'var(--color-primary)' : 'var(--color-text-muted)',
-                                border: isActive ? '1.5px dashed var(--color-border-dashed)' : '1.5px solid transparent',
-                            }}
+                            className={cn(
+                                "w-full cursor-pointer flex items-center gap-3 px-3 py-2.5 text-sm font-medium text-left transition-colors relative",
+                                isActive ? 'bg-(--color-primary-glow)' : 'bg-transparent',
+                                isActive ? 'text-(--color-primary)' : 'text-(--color-text-muted)',
+                                isActive ? 'border-[1.5px] border-dashed border-(--color-border-dashed)' : 'border-[1.5px] border-solid border-transparent',
+                            )}
                         >
-                            <Icon size={17} />
+                            {
+                                isActive && <Corners />
+                            }
+
+                            <Icon className='size-6' />
+
                             {item.label}
 
                             {item.path === '/dashboard' && alerts.length > 0 && (
                                 <span
-                                    className="ml-auto text-xs font-bold px-1.5 py-0.5 rounded-full"
-                                    style={{ background: 'var(--color-danger)', color: '#fff', fontSize: '10px' }}
+                                    className="ml-auto bg-(--color-danger) text-[#fff] text-[10px] text-xs font-bold px-1.5 py-0.5 rounded-full"
                                 >
                                     {alerts.length}
                                 </span>
@@ -100,14 +103,10 @@ const Sidebar = memo(() => {
 
             <div className="px-4 py-5">
                 <div
-                    className="rounded-lg p-3 text-xs"
-                    style={{
-                        background: 'var(--color-surface-2)',
-                        border: '1.5px dashed var(--color-border-dashed)',
-                        color: 'var(--color-text-muted)',
-                    }}
+                    className="rounded-lg p-3 text-xs bg-(--color-surface-2) text-(--color-text-muted) border-[1.5px] border-dashed border-(--color-border-dashed) "
+
                 >
-                    <p style={{ color: 'var(--color-accent)' }} className="font-semibold mb-1">
+                    <p className="font-semibold text-(--color-accent) mb-1">
                         💡 Did you know?
                     </p>
                     Indians waste ₹2,400/year on forgotten subscriptions on average.
