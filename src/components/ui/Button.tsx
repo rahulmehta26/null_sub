@@ -23,89 +23,23 @@ const SIZE_CLASSES: Record<ButtonSize, string> = {
     lg: "px-6 py-2.5 text-sm",
 };
 
-const getVariantStyle = (variant: ButtonVariant): React.CSSProperties => {
-    switch (variant) {
-        case "primary":
-            return {
-                background: "var(--color-primary)",
-                color: "#fff",
-                border: "1.5px solid var(--color-primary)",
-            };
-        case "outline":
-            return {
-                background: "transparent",
-                color: "var(--color-text)",
-                border: "1.5px solid var(--color-primary)",
-            };
-        case "dashed":
-            return {
-                background: "var(--color-surface)",
-                color: "var(--color-text)",
-                border: "1.5px dashed var(--color-border-dashed)",
-            };
-        case "danger":
-            return {
-                background: "var(--color-danger-glow)",
-                color: "var(--color-danger)",
-                border: "1.5px dashed rgba(192,57,43,0.35)",
-            };
-        case "ghost":
-            return {
-                background: "transparent",
-                color: "var(--color-text-muted)",
-                border: "1.5px solid transparent",
-            };
-    }
+const VARIANT_CLASSES: Record<ButtonVariant, string> = {
+    primary:
+        "bg-(--color-primary) text-white border-[1.5px] border-(--color-primary)",
+
+    outline:
+        "bg-transparent text-(--color-text) border-[1.5px] border-(--color-primary)",
+
+    dashed:
+        "bg-(--color-surface) text-(--color-text) border-[1.5px] border-dashed border-(--color-border-dashed)",
+
+    danger:
+        "bg-(--color-danger-glow) text-(--color-danger) border-[1.5px] border-dashed border-[rgba(192,57,43,0.35)]",
+
+    ghost:
+        "bg-transparent text-(--color-text-muted) border-[1.5px] border-transparent",
 };
 
-const CornerBrackets = () => (
-    <>
-        <span
-            style={{
-                position: "absolute",
-                top: -1,
-                left: -1,
-                width: 7,
-                height: 7,
-                borderTop: "2px solid var(--color-primary)",
-                borderLeft: "2px solid var(--color-primary)",
-            }}
-        />
-        <span
-            style={{
-                position: "absolute",
-                top: -1,
-                right: -1,
-                width: 7,
-                height: 7,
-                borderTop: "2px solid var(--color-primary)",
-                borderRight: "2px solid var(--color-primary)",
-            }}
-        />
-        <span
-            style={{
-                position: "absolute",
-                bottom: -1,
-                left: -1,
-                width: 7,
-                height: 7,
-                borderBottom: "2px solid var(--color-primary)",
-                borderLeft: "2px solid var(--color-primary)",
-            }}
-        />
-        <span
-            style={{
-                position: "absolute",
-                bottom: -1,
-                right: -1,
-                width: 7,
-                height: 7,
-                borderBottom: "2px solid var(--color-primary)",
-                borderRight: "2px solid var(--color-primary)",
-            }}
-        />
-    </>
-);
 
 const Button = memo(
     ({
@@ -118,7 +52,6 @@ const Button = memo(
         className,
         icon,
     }: ButtonProps) => {
-        const isDashed = variant === "dashed";
 
         return (
             <motion.button
@@ -130,20 +63,14 @@ const Button = memo(
                     !disabled ? { y: -1, transition: { duration: 0.15 } } : undefined
                 }
                 className={cn(
-                    "relative inline-flex items-center gap-2 font-semibold",
+                    "relative inline-flex items-center gap-2 font-semibold font-(--font-body) rounded-(--radius-sm) tracking-[0.01em]",
                     SIZE_CLASSES[size],
+                    VARIANT_CLASSES[variant],
                     disabled && "opacity-45 cursor-not-allowed",
                     !disabled && "cursor-pointer",
-                    className,
+                    className
                 )}
-                style={{
-                    ...getVariantStyle(variant),
-                    fontFamily: "var(--font-body)",
-                    borderRadius: "var(--radius-sm)",
-                    letterSpacing: "0.01em",
-                }}
             >
-                {isDashed && <CornerBrackets />}
                 {icon && <span className="flex items-center">{icon}</span>}
                 {children}
             </motion.button>
