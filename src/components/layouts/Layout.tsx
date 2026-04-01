@@ -2,6 +2,7 @@ import { memo } from 'react';
 import { useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'motion/react';
 import { pageVariants } from '../animations/variants';
+import Sidebar from './Sidebar';
 
 
 interface LayoutProps {
@@ -14,6 +15,8 @@ const Layout = memo(({ children }: LayoutProps) => {
 
     return (
         <div className="flex min-h-screen bg-(--color-bg)">
+
+            <Sidebar />
 
             <main
                 className="flex-1 flex flex-col ml-64 bg-(--color-bg) min-h-screen"
