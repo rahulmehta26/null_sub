@@ -68,3 +68,16 @@ export const alertVariants: Variants = {
     transition: { duration: 0.35, ease: "easeOut" },
   },
 };
+
+export const navItemVariants: Variants = {
+  hidden: { opacity: 0, x: -20 },
+  visible: (i: number) => ({
+    opacity: 1,
+    x: 0,
+    transition: {
+      delay: i * 0.07,
+      duration: 0.35,
+      ease: "easeOut",
+    },
+  }),
+};
