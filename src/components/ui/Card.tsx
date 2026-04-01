@@ -2,6 +2,7 @@ import { memo } from 'react';
 import { motion } from 'motion/react';
 import { cardVariants, hoverScale, tapScale } from '../animations/variants';
 import { cn } from '../../utils/cn';
+import { Corners } from './Corners';
 
 
 interface CardProps {
@@ -38,7 +39,6 @@ const Card = memo(({
         border: isDashed
             ? `1.5px dashed ${borderColor}`
             : `1px solid ${borderColor}`,
-        borderRadius: 'var(--radius-lg)',
         boxShadow: hoverable ? undefined : 'var(--shadow-card)',
     };
 
@@ -50,11 +50,13 @@ const Card = memo(({
             onClick={onClick}
             style={style}
             className={cn(
-                'p-5',
+                'relative  p-5',
                 hoverable && 'cursor-pointer',
                 className
             )}
         >
+            {variant === 'dashed' && <Corners />}
+
             {children}
         </motion.div>
     );

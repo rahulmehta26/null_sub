@@ -11,7 +11,7 @@ import SubscriptionRow from '../components/ui/SubscriptionRow';
 
 
 const Subscriptions = memo(() => {
-    // const navigate = useNavigate();
+    const navigate = useNavigate();
     const { subscriptions, deleteSubscription } = useSubscriptionStore();
 
     const [search, setSearch] = useState('');
@@ -34,7 +34,7 @@ const Subscriptions = memo(() => {
         [deleteSubscription]
     );
 
-    // const handleAdd = useCallback(() => navigate('/add'), [navigate]);
+    const handleAdd = useCallback(() => navigate('/add'), [navigate]);
 
     return (
         <motion.div
@@ -49,19 +49,18 @@ const Subscriptions = memo(() => {
             >
                 <div>
                     <h2
-                        className="text-2xl font-bold"
-                        style={{ fontFamily: 'var(--font-display)', color: 'var(--color-text)' }}
+                        className="text-2xl font-(--font-display) text-(--color-text) font-bold"
                     >
                         Subscriptions
                     </h2>
-                    <p className="text-sm mt-1" style={{ color: 'var(--color-text-muted)' }}>
+                    <p className="text-sm text-(--color-text-muted) mt-1">
                         {subscriptions.length} total · {formatRupees(summary.totalMonthly)}/mo
                     </p>
                 </div>
                 <Button
                     variant="primary"
                     size="md"
-                    // onClick={handleAdd}
+                    onClick={handleAdd}
                     icon={<PlusCircle />}
                 >
                     Add New
@@ -81,11 +80,8 @@ const Subscriptions = memo(() => {
 
             <motion.div
                 variants={cardVariants}
-                className="grid px-4 text-xs font-semibold uppercase tracking-wider"
-                style={{
-                    color: 'var(--color-text-dim)',
-                    gridTemplateColumns: '1fr 112px 128px 128px 96px 140px',
-                }}
+                className="grid px-4 text-var(--color-text-dim) grid-cols-7 gap-7 text-xs font-semibold uppercase tracking-wider"
+
             >
                 <span>Name</span>
                 <span className="text-right">Cost</span>
@@ -102,8 +98,7 @@ const Subscriptions = memo(() => {
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
-                        className="py-16 text-center"
-                        style={{ color: 'var(--color-text-muted)' }}
+                        className="py-16 text-(--color-text-muted) text-center"
                     >
                         <p className="text-4xl mb-3">🔍</p>
                         <p className="font-semibold">No subscriptions found</p>

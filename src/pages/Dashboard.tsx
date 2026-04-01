@@ -13,6 +13,7 @@ import TrendingUp from '../components/icons/TrendingUp';
 import Clock from '../components/icons/Clock';
 import AlertCard from '../components/ui/AlertCard';
 import SpendingChart from '../components/charts/SpendingChart';
+import PageHeader from '../components/ui/PageHeader';
 
 const Dashboard = memo(() => {
     const subscriptions = useSubscriptionStore((s) => s.subscriptions);
@@ -30,16 +31,11 @@ const Dashboard = memo(() => {
             animate="visible"
             className="flex flex-col gap-6"
         >
-            <motion.div variants={{ hidden: { opacity: 0, y: 12 }, visible: { opacity: 1, y: 0 } }}>
-                <h2
-                    className="text-2xl font-bold font-display text-(--color-text) "
-                >
-                    Dashboard
-                </h2>
-                <p className="text-sm mt-1 text-(--color-text-muted)">
-                    Your subscription overview at a glance
-                </p>
-            </motion.div>
+
+            <PageHeader
+                title='Dashboard'
+                subtitle='Your subscription overview at a glance'
+            />
 
             <div className="grid grid-cols-2 xl:grid-cols-4 gap-4">
                 <StatCard

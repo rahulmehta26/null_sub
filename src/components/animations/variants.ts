@@ -36,3 +36,35 @@ export const pageVariants: Variants = {
     transition: { duration: 0.25, ease: "easeIn" },
   },
 };
+
+export const containerVariants: Variants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.08,
+      delayChildren: 0.1,
+    },
+  },
+};
+
+export const numberVariants: Variants = {
+  hidden: { opacity: 0, scale: 0.8 },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    transition: {
+      duration: 0.5,
+      ease: [0.34, 1.56, 0.64, 1],
+    },
+  },
+};
+
+export const alertVariants: Variants = {
+  hidden: { opacity: 0, x: -16 },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: { duration: 0.35, ease: "easeOut" },
+  },
+};

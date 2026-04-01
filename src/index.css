@@ -71,6 +71,13 @@
   }
 }
 
+@layer components {
+
+  .icons {
+    @apply size-6 shrink-0
+  }
+}
+
 @layer utilities {
   /* ── Dashed card ── */
   .card-dashed {
