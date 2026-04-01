@@ -5,28 +5,29 @@ import AlertTriangle from '../icons/AlertTriangle';
 import TrendingDown from '../icons/TrendingDown';
 import type { Alert } from '../../types';
 import { alertVariants } from '../animations/variants';
+import { cn } from '../../utils/cn';
 
 
 const ALERT_CONFIG = {
     unused: {
         icon: TrendingDown,
-        color: 'var(--color-danger)',
-        bg: 'var(--color-danger-glow)',
-        border: 'rgba(255,77,106,0.2)',
+        color: 'text-(--color-danger)',
+        bg: 'bg-(--color-danger-glow)',
+        border: 'border-[rgba(255,77,106,0.2)]',
         label: 'Unused',
     },
     expiring: {
         icon: Clock,
-        color: 'var(--color-warning)',
-        bg: 'var(--color-warning-glow)',
-        border: 'rgba(245,166,35,0.2)',
+        color: 'text-(--color-warning)',
+        bg: 'bg-(--color-warning-glow)',
+        border: 'border-[rgba(245,166,35,0.2)]',
         label: 'Expiring',
     },
     wasteful: {
         icon: AlertTriangle,
-        color: 'var(--color-danger)',
-        bg: 'var(--color-danger-glow)',
-        border: 'rgba(255,77,106,0.2)',
+        color: 'text-(--color-danger)',
+        bg: 'bg-(--color-danger-glow)',
+        border: 'border-[rgba(255,77,106,0.2)]',
         label: 'Wasteful',
     },
 };
@@ -45,15 +46,19 @@ const AlertCard = memo(({ alert, index }: AlertCardProps) => {
         <motion.div
             variants={alertVariants}
             custom={index}
-            className="flex items-start gap-3 p-3 rounded-xl"
-            style={{
-                background: config.bg,
-                border: `1px solid ${config.border}`,
-            }}
+            className={cn(
+                "flex items-start gap-3 p-3 rounded-xl",
+                config.bg,
+                config.border
+            )}
+
         >
             <div
-                className="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5"
-                style={{ background: config.bg, color: config.color }}
+                className={cn(
+                    "w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5",
+                    config.bg,
+                    config.color
+                )}
             >
                 <Icon />
             </div>
@@ -61,21 +66,25 @@ const AlertCard = memo(({ alert, index }: AlertCardProps) => {
             <div className="flex-1 min-w-0">
                 <div className="flex items-center gap-2 mb-0.5">
                     <p
-                        className="text-xs font-bold uppercase tracking-wider"
-                        style={{ color: config.color }}
+                        className={cn(
+                            "text-xs font-bold uppercase tracking-wider",
+                            config.color
+                        )}
                     >
                         {config.label}
                     </p>
                     {alert.severity === 'high' && (
                         <span
-                            className="text-xs px-1.5 py-px rounded-full font-semibold"
-                            style={{ background: config.color, color: '#fff', fontSize: '9px' }}
+                            className={cn(
+                                "text-xs px-1.5 py-px text-[#fff] text-[9px] rounded-full font-semibold",
+                                config.color
+                            )}
                         >
                             HIGH
                         </span>
                     )}
                 </div>
-                <p className="text-sm" style={{ color: 'var(--color-text)' }}>
+                <p className="text-sm text-(--color-text)">
                     {alert.message}
                 </p>
             </div>
