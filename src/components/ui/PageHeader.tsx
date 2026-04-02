@@ -10,11 +10,7 @@ const PageHeader = ({ title, subtitle }: { title: string, subtitle?: string }) =
                 {title}
             </h2>
             <p className="text-sm mt-1 text-(--color-text-muted)">
-                {subtitle && (
-                    <p className="text-sm mt-1 text-(--color-text-muted)">
-                        {subtitle}
-                    </p>
-                )}
+                {subtitle && (<>{subtitle}</>)}
             </p>
         </motion.div>
     )
