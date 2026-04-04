@@ -5,6 +5,7 @@ import { cardVariants, containerVariants } from '../../components/animations/var
 import Button from '../../components/ui/Button';
 import ArrowRight from '../../components/icons/ArrowRight';
 import { Corners } from '../../components/ui/Corners';
+import LandingMarquee from './LandingMarquee';
 
 
 const LandingHero = memo(() => {
@@ -74,6 +75,8 @@ const LandingHero = memo(() => {
                 </Button>
 
             </motion.div>
+
+            <LandingMarquee />
 
         </motion.section>
     );
