@@ -2,6 +2,7 @@ import { memo } from "react";
 import { motion } from "motion/react";
 import { tapScale } from "../animations/variants";
 import { cn } from "../../utils/cn";
+import { Corners } from "./Corners";
 
 type ButtonVariant = "primary" | "outline" | "dashed" | "danger" | "ghost";
 type ButtonSize = "sm" | "md" | "lg";
@@ -15,6 +16,8 @@ interface ButtonProps {
     type?: "button" | "submit" | "reset";
     className?: string;
     icon?: React.ReactNode;
+    dashed?: boolean;
+    cornerClassName?: string
 }
 
 const SIZE_CLASSES: Record<ButtonSize, string> = {
@@ -51,6 +54,8 @@ const Button = memo(
         type = "button",
         className,
         icon,
+        dashed = false,
+        cornerClassName
     }: ButtonProps) => {
 
         return (
@@ -63,7 +68,7 @@ const Button = memo(
                     !disabled ? { y: -1, transition: { duration: 0.15 } } : undefined
                 }
                 className={cn(
-                    "relative inline-flex items-center gap-2 font-semibold font-(--font-body) rounded-(--radius-sm) tracking-[0.01em]",
+                    "relative inline-flex text-shadow-2xs items-center gap-2 font-semibold font-(--font-body) rounded-(--radius-sm) tracking-[0.01em]",
                     SIZE_CLASSES[size],
                     VARIANT_CLASSES[variant],
                     disabled && "opacity-45 cursor-not-allowed",
@@ -71,6 +76,9 @@ const Button = memo(
                     className
                 )}
             >
+                {
+                    dashed && (<Corners className={cn(cornerClassName)} />)
+                }
                 {icon && <span className="flex items-center">{icon}</span>}
                 {children}
             </motion.button>
