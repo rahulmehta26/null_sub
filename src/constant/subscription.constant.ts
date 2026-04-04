@@ -11,7 +11,11 @@ export const CATEGORIES: SubscriptionCategory[] = [
   "Other",
 ];
 
-export const BILLING_CYCLES: BillingCycle[] = ["monthly", "yearly", "weekly"];
+export const BILLING_CYCLES: BillingCycle[] = [
+  "monthly",
+  "yearly",
+  "quarterly",
+];
 
 export const EMOJI_OPTIONS = [
   "🎬",
