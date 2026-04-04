@@ -9,6 +9,7 @@ const LandingFeatures = memo(() => {
     return (
         <section
             className="pt-8 w-full"
+            id="features"
         >
 
             <DashedBorder />

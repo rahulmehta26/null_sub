@@ -68,7 +68,7 @@ const SpendingChart = memo(({ subscriptions }: SpendingChartProps) => {
             </ResponsiveContainer>
 
             <div className="flex flex-wrap gap-x-4 gap-y-2 mt-2">
-                {data.map((item) => (
+                {data?.map((item) => (
                     <div
                         key={item.category}
                         className="flex items-center gap-1.5"

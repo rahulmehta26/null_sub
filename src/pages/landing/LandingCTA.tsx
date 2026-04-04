@@ -15,6 +15,7 @@ const LandingCTA = memo(() => {
         <>
             <section
                 className="w-full pt-8"
+                id="how-it-works"
             >
 
                 <DashedBorder />

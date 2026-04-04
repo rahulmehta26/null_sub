@@ -79,7 +79,7 @@
 }
 
 @layer utilities {
-  /* ── Dashed card ── */
+
   .card-dashed {
     background: var(--color-surface);
     border: 1.5px dashed var(--color-border-dashed);
@@ -87,7 +87,6 @@
     box-shadow: var(--shadow-card);
   }
 
-  /* ── Corner bracket button ── */
   .btn-corner {
     position: relative;
     background: transparent;
@@ -117,16 +116,18 @@
     border-right: var(--corner-weight) solid var(--color-primary);
   }
 
-  /* ── Ruled divider ── */
   .ruled {
     border-top: 1px dashed var(--color-border-dashed);
   }
 
-  /* ── Subtle text gradient ── */
   .text-gradient {
     background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
+}
+
+html {
+  scroll-behavior: smooth;
 }

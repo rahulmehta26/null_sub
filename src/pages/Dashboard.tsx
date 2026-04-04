@@ -92,7 +92,7 @@ const Dashboard = memo(() => {
                                 ✅ No alerts — all subscriptions look healthy!
                             </p>
                         ) : (
-                            alerts.map((alert, i) => (
+                            alerts?.map((alert, i) => (
                                 <AlertCard key={alert.id} alert={alert} index={i} />
                             ))
 

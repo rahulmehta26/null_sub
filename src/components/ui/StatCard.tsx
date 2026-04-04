@@ -21,7 +21,7 @@ const StatCard = memo(({
     subtext,
     icon,
     glowColor = '--color-primary-glow',
-    borderColor = '--color-border',
+    borderColor = 'border(--color-border',
 }: StatCardProps) => {
     return (
         <motion.div
@@ -36,7 +36,7 @@ const StatCard = memo(({
 
         >
 
-            <Corners />
+            <Corners className={cn()} />
 
             <div className="flex items-center justify-between">
                 <p
