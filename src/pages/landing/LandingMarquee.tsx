@@ -2,40 +2,7 @@ import { memo } from "react";
 import { motion } from "motion/react";
 import { cn } from "../../utils/cn";
 import { Corners } from "../../components/ui/Corners";
-
-const SUBS = [
-    { name: "Netflix", logo: "🎬", status: "active", cost: "₹649" },
-    { name: "Hotstar", logo: "⭐", status: "unused", cost: "₹299" },
-    { name: "Spotify", logo: "🎵", status: "active", cost: "₹119" },
-    { name: "Amazon Prime", logo: "📦", status: "expiring", cost: "₹299" },
-    { name: "SonyLIV", logo: "📺", status: "unused", cost: "₹299" },
-    { name: "YouTube", logo: "▶️", status: "active", cost: "₹189" },
-    { name: "iCloud", logo: "☁️", status: "active", cost: "₹75" },
-    { name: "Notion", logo: "📝", status: "active", cost: "₹400" },
-    { name: "Zee5", logo: "📡", status: "unused", cost: "₹199" },
-    { name: "Adobe CC", logo: "🎨", status: "expiring", cost: "₹1675" },
-];
-
-const STATUS_CONFIG = {
-    active: {
-        wrapper:
-            "bg-[rgba(26,107,74,0.06)] border-[rgba(26,107,74,0.25)] text-[#1a6b4a]",
-        dot: "bg-[#1a6b4a]",
-        label: "active",
-    },
-    unused: {
-        wrapper:
-            "bg-[rgba(192,57,43,0.06)] border-[rgba(192,57,43,0.25)] text-[#c0392b]",
-        dot: "bg-[#c0392b]",
-        label: "unused",
-    },
-    expiring: {
-        wrapper:
-            "bg-[rgba(183,112,13,0.06)] border-[rgba(183,112,13,0.25)] text-[#b7700d]",
-        dot: "bg-[#b7700d]",
-        label: "expiring",
-    },
-};
+import { STATUS_CONFIG, SUBS } from "../../constant/landing-marquee-constant";
 
 const Pill = memo(({ name, logo, status, cost }: (typeof SUBS)[0]) => {
     const cfg = STATUS_CONFIG[status as keyof typeof STATUS_CONFIG];
@@ -53,10 +20,10 @@ const Pill = memo(({ name, logo, status, cost }: (typeof SUBS)[0]) => {
             <span className="text-sm">{logo}</span>
 
             <div className="flex flex-col leading-none gap-0.5">
-                <span className="text-xs font-semibold text-[var(--color-text)] font-display">
+                <span className="text-xs font-semibold text-(--color-text) font-display">
                     {name}
                 </span>
-                <span className="text-xs text-[var(--color-text-muted)] font-mono">
+                <span className="text-xs text-(--color-text-muted) font-mono">
                     {cost}/mo
                 </span>
             </div>
