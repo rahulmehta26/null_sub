@@ -42,32 +42,29 @@ const Dashboard = memo(() => {
                     label="Monthly Spend"
                     value={formatRupees(summary.totalMonthly)}
                     subtext={`${formatRupees(summary.totalYearly)} / year`}
-                    icon={<Wallet className={cn('text-(--color-primary) size-8 ')} />}
-                    glowColor="--color-primary-glow"
+                    icon={<Wallet className={cn('text-(--color-primary) size-6 ')} />}
+                    variant="primary"
                 />
                 <StatCard
                     label="Wasted Monthly"
                     value={formatRupees(summary.unusedMonthly)}
                     subtext={`${summary.unusedCount} unused subscriptions`}
-                    icon={<AlertTriangle className={cn('text-(--color-danger) size-8 ')} />}
-                    glowColor="--color-danger-glow"
-                    borderColor="rgba(255,77,106,0.2)"
+                    icon={<AlertTriangle className={cn('text-(--color-danger) size-6 ')} />}
+                    variant="danger"
                 />
                 <StatCard
                     label="Active"
                     value={String(summary.activeCount)}
                     subtext="subscriptions in use"
-                    icon={<TrendingUp className={cn('text-(--color-accent) size-8 ')} />}
-                    glowColor="--color-accent-glow"
-                    borderColor="rgba(0,229,176,0.2)"
+                    icon={<TrendingUp className={cn('text-(--color-accent) size-6 ')} />}
+                    variant="accent"
                 />
                 <StatCard
                     label="Expiring Soon"
                     value={String(summary.expiringCount)}
                     subtext="renewing within 7 days"
-                    icon={<Clock className={cn('text-(--color-warning) size-8 ')} />}
-                    glowColor="--color-warning-glow"
-                    borderColor="rgba(245,166,35,0.2)"
+                    icon={<Clock className={cn('text-(--color-warning) size-6 ')} />}
+                    variant="warning"
                 />
             </div>
 
