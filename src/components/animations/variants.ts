@@ -81,3 +81,13 @@ export const navItemVariants: Variants = {
     },
   }),
 };
+
+export const blurFadeVariants: Variants = {
+  hidden: { opacity: 0, filter: "blur(8px)", y: 8 },
+  visible: (i: number = 0) => ({
+    opacity: 1,
+    filter: "blur(0px)",
+    y: 0,
+    transition: { delay: i * 0.08, duration: 0.5, ease: "easeOut" },
+  }),
+};
