@@ -2,7 +2,7 @@ import { memo } from "react";
 import { motion } from "motion/react";
 import { cn } from "../../utils/cn";
 import { Corners } from "../../components/ui/Corners";
-import { STATUS_CONFIG, SUBS } from "../../constant/landing-marquee-constant";
+import { STATUS_CONFIG, SUBS } from "../../constant/landing-marquee.constant";
 
 const Pill = memo(({ name, logo, status, cost }: (typeof SUBS)[0]) => {
     const cfg = STATUS_CONFIG[status as keyof typeof STATUS_CONFIG];

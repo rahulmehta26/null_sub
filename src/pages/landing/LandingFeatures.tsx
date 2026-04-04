@@ -1,6 +1,6 @@
 import { memo } from 'react';
 import { motion } from 'motion/react';
-import { FEATURES } from '../../constant/features-constant';
+import { FEATURES } from '../../constant/features.constant';
 import { cardVariants, containerVariants } from '../../components/animations/variants';
 import { Corners } from '../../components/ui/Corners';
 import DashedBorder from '../../components/ui/DashedBorder';
@@ -27,7 +27,7 @@ const LandingFeatures = memo(() => {
                     Why NullSub
                 </p>
                 <h2
-                    className="text-4xl text-shadow-2xs font-bold tracking-tight text(--color-text) font-(--font-display)"
+                    className="text-4xl text-shadow-2xs font-bold tracking-tight text-(--color-text) font-(--font-display)"
                 >
                     Everything you need.
                     <br />

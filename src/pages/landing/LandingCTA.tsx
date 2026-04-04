@@ -1,7 +1,7 @@
 import { memo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'motion/react';
-import { STEPS } from '../../constant/cta-constant';
+import { STEPS } from '../../constant/cta.constant';
 import Button from '../../components/ui/Button';
 import { Corners } from '../../components/ui/Corners';
 import ArrowRight from '../../components/icons/ArrowRight';

@@ -61,7 +61,8 @@ const SubscriptionForm = ({ form }: any) => {
                             label="Cost"
                         >
                             <input
-                                type="number"
+                                type="text"
+                                placeholder="enter subscription money"
                                 className={cn(inputClass)}
                                 {...bindField(field)}
                             />

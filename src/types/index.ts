@@ -1,4 +1,4 @@
-export type BillingCycle = "monthly" | "yearly" | "weekly";
+export type BillingCycle = "monthly" | "yearly" | "quarterly";
 
 export type SubscriptionCategory =
   | "Entertainment"
