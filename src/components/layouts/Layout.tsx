@@ -3,6 +3,7 @@ import { useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'motion/react';
 import { pageVariants } from '../animations/variants';
 import Sidebar from './Sidebar';
+import { cn } from '../../utils/cn';
 
 
 interface LayoutProps {
@@ -13,17 +14,24 @@ const Layout = memo(({ children }: LayoutProps) => {
 
     const location = useLocation();
 
+    const isLandingPage = location.pathname === "/";
+
     return (
         <div className="flex min-h-screen bg-(--color-bg)">
 
-            <Sidebar />
+            {
+
+                !isLandingPage && <Sidebar />
+            }
 
             <main
-                className="flex-1 flex flex-col ml-64 bg-(--color-bg) min-h-screen"
+                className={cn(
+                    "flex-1 flex flex-col bg-(--color-bg) min-h-screen",
+                    !isLandingPage && "ml-64"
+                )}
             >
                 <div
-                    className="h-px w-full bg-(--color-border-dashed)"
-                    style={{ opacity: 0.6 }}
+                    className="h-px w-full opacity-[0.6] bg-(--color-border-dashed)"
                 />
 
                 <AnimatePresence mode="wait">
@@ -33,7 +41,7 @@ const Layout = memo(({ children }: LayoutProps) => {
                         initial="hidden"
                         animate="visible"
                         exit="exit"
-                        className="flex-1 p-8"
+                        className={cn("flex-1", !isLandingPage && "p-8")}
                     >
                         {children}
                     </motion.div>
