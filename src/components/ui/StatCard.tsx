@@ -3,15 +3,17 @@ import { motion } from 'motion/react';
 import { cardVariants, numberVariants } from '../animations/variants';
 import { cn } from '../../utils/cn';
 import { Corners } from './Corners';
+import { statsCardVariants } from '../../constant/stats-card.constant';
 
+export type StatCardVariant = keyof typeof statsCardVariants;
 
 interface StatCardProps {
     label: string;
     value: string;
     subtext?: string;
     icon: React.ReactNode;
-    glowColor?: string;
-    borderColor?: string;
+    variant?: StatCardVariant;
+    className?: string
 }
 
 
@@ -20,9 +22,11 @@ const StatCard = memo(({
     value,
     subtext,
     icon,
-    glowColor = '--color-primary-glow',
-    borderColor = 'border(--color-border',
+    variant = "primary",
+    className,
 }: StatCardProps) => {
+
+    const v = statsCardVariants[variant]
     return (
         <motion.div
             variants={cardVariants}
@@ -30,13 +34,14 @@ const StatCard = memo(({
                 'p-5 relative flex flex-col gap-4',
                 'bg-(--color-surface)',
                 'border border-dashed ',
-                `border-[${borderColor}]`,
-                `shadow-[0_4px_24px_${glowColor}]`
+                v.border,
+                v.glow,
+                className
             )}
 
         >
 
-            <Corners className={cn()} />
+            <Corners className={cn(v.corner)} />
 
             <div className="flex items-center justify-between">
                 <p
@@ -49,8 +54,7 @@ const StatCard = memo(({
                 </p>
                 <div
                     className={cn(
-                        'w-9 h-9 rounded-xl flex items-center justify-center',
-                        `bg-[${glowColor}]`
+                        'w-9 h-9 rounded-xl shadow-md bg-(--color-text-dim)/20 flex items-center justify-center',
                     )}
                 >
                     {icon}
