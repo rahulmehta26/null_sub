@@ -98,11 +98,19 @@ const LandingCTA = memo(() => {
             <footer
                 className="mx-auto pb-8 flex items-center justify-between"
             >
-                <p
-                    className="text-sm font-(--font-display) text-(--color-text) font-bold"
-                >
-                    NullSub
-                </p>
+
+                <div>
+
+                    <p
+                        className="text-sm font-(--font-display) text-(--color-text) font-bold"
+                    >
+                        NullSub
+                    </p>
+
+                    <p className="text-xs text-(--color-text-muted)">
+                        Null the waste.
+                    </p>
+                </div>
                 <p className="text-xs text-(--color-text-muted)">
                     Built with React · Inspired by {" "}
                     <span className='text-(--color-text)'>Razorpay Fix My Itch</span>

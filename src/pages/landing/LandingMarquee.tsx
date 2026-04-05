@@ -10,7 +10,7 @@ const Pill = memo(({ name, logo, status, cost }: (typeof SUBS)[0]) => {
     return (
         <div
             className={cn(
-                "inline-flex relative items-center gap-2.5 px-3.5 py-2 flex-shrink-0",
+                "inline-flex relative items-center gap-5 px-3.5 py-2 flex-shrink-0",
                 "bg-(--color-surface) border-[1px] border-dashed border-(--color-border-dashed)",
             )}
         >
