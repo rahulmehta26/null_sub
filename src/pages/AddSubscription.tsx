@@ -30,8 +30,7 @@ const AddSubscription = memo(() => {
             category: values.category,
             cost: Number(values.cost),
             billingCycle: values.billingCycle,
-            lastUsed: new Date(values.lastUsed).toISOString(),
-            renewalDate: new Date(values.renewalDate).toISOString(),
+            purchaseDate: new Date(values.purchaseDate).toISOString(),
             logo: values.logo || "📦",
             notes: values.notes,
         };
@@ -75,14 +74,23 @@ const AddSubscription = memo(() => {
             >
                 <Corners />
 
-                <SubscriptionForm form={form} />
+                <form
+                    onSubmit={(e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        form.handleSubmit();
+                    }}
+                >
 
-                <FormActions
-                    form={form}
-                    isEdit={isEdit}
-                    saved={saved}
-                    handleBack={handleBack}
-                />
+                    <SubscriptionForm form={form} />
+
+                    <FormActions
+                        form={form}
+                        isEdit={isEdit}
+                        saved={saved}
+                        handleBack={handleBack}
+                    />
+                </form>
             </motion.div>
         </motion.div>
     );

@@ -11,11 +11,14 @@ export const useSubscriptionStore = create<SubscriptionStore>()(
       subscriptions: mockSubscriptions,
 
       addSubscription: (sub) => {
+        const now = new Date().toISOString();
+
         const newSub: Subscription = {
           ...sub,
           id: uuidv4(),
-          createdAt: new Date().toISOString(),
-          status: computeStatus(sub.lastUsed, sub.renewalDate),
+          createdAt: now,
+          lastUsed: now,
+          status: computeStatus(now, sub.purchaseDate, sub.billingCycle),
         };
         set((state) => ({
           subscriptions: [...state.subscriptions, newSub],
@@ -29,7 +32,11 @@ export const useSubscriptionStore = create<SubscriptionStore>()(
             const updated = { ...sub, ...updates };
             return {
               ...updated,
-              status: computeStatus(updated.lastUsed, updated.renewalDate),
+              status: computeStatus(
+                updated.lastUsed,
+                updated.purchaseDate,
+                updated.billingCycle,
+              ),
             };
           }),
         }));

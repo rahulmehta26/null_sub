@@ -80,15 +80,14 @@ const Subscriptions = memo(() => {
 
             <motion.div
                 variants={cardVariants}
-                className="grid px-4 text-var(--color-text-dim) grid-cols-7 gap-7 text-xs font-semibold uppercase tracking-wider"
-
+                className="grid px-4 grid-cols-[2fr_1fr_1fr_1fr_0.8fr_1.2fr] gap-4 text-xs font-semibold uppercase tracking-wider text-(--color-text-dim)"
             >
                 <span>Name</span>
                 <span className="text-right">Cost</span>
                 <span>Last Used</span>
                 <span>Renewal</span>
                 <span className="text-center">Status</span>
-                <span>Actions</span>
+                <span className="text-left">Actions</span>
             </motion.div>
 
             <AnimatePresence mode="popLayout">

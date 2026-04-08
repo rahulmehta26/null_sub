@@ -6,10 +6,15 @@ import CategorySelector from "./CategorySelector";
 import EmojiPicker from "./EmojiPicker";
 import { cn } from "../../utils/cn";
 
+const formatDate = (date: string) => {
+    if (!date) return "";
+    return date.split("T")[0];
+};
+
 const SubscriptionForm = ({ form }: any) => {
     return (
         <>
-            <div className="grid grid-cols-3 gap-4">
+            <div className="grid grid-cols-3 pb-3 gap-4">
                 <div className="col-span-2">
                     <form.Field
                         name="name"
@@ -46,13 +51,15 @@ const SubscriptionForm = ({ form }: any) => {
                 </form.Field>
             </div>
 
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 py-3 gap-4">
                 <form.Field
+                    name="cost"
                     validators={{
                         onChange: ({ value }: { value: string }) =>
-                            !value.trim() ? "Cost is required" : undefined,
+                            !value || isNaN(Number(value))
+                                ? "Valid cost required"
+                                : undefined,
                     }}
-                    name="cost"
                 >
                     {(field: any) => (
                         <FormField
@@ -61,8 +68,10 @@ const SubscriptionForm = ({ form }: any) => {
                             label="Cost"
                         >
                             <input
-                                type="text"
-                                placeholder="enter subscription money"
+                                type="number"
+                                min={0}
+                                step={1}
+                                placeholder="Enter subscription amount"
                                 className={cn(inputClass)}
                                 {...bindField(field)}
                             />
@@ -71,17 +80,16 @@ const SubscriptionForm = ({ form }: any) => {
                 </form.Field>
 
                 <form.Field
+                    name="billingCycle"
                     validators={{
                         onChange: ({ value }: { value: string }) =>
-                            !value.trim() ? "Billing cycle is required" : undefined,
+                            !value.trim()
+                                ? "Billing cycle is required"
+                                : undefined,
                     }}
-                    name="billingCycle"
                 >
                     {(field: any) => (
-                        <FormField
-                            required
-                            label="Billing Cycle"
-                        >
+                        <FormField required label="Billing Cycle">
                             <BillingCycleSelector
                                 value={field.state.value}
                                 onChange={field.handleChange}
@@ -91,86 +99,87 @@ const SubscriptionForm = ({ form }: any) => {
                 </form.Field>
             </div>
 
-            <form.Field
-                name="category"
-                validators={{
-                    onChange: ({ value }: { value: string }) =>
-                        !value.trim() ? "Category is required" : undefined,
-                }}
+            <div
+                className="py-3"
             >
-                {(field: any) => (
-                    <FormField
-                        error={field.state.meta.errors[0]?.toString()}
-                        label="Category"
-                    >
-                        <CategorySelector
-                            value={field.state.value}
-                            onChange={field.handleChange}
-                        />
-                    </FormField>
-                )}
-            </form.Field>
 
-            <div className="grid grid-cols-2 gap-4">
                 <form.Field
-                    name="lastUsed"
+                    name="category"
                     validators={{
                         onChange: ({ value }: { value: string }) =>
-                            !value ? "Last used date is required" : undefined,
+                            !value.trim() ? "Category is required" : undefined,
                     }}
                 >
                     {(field: any) => (
                         <FormField
-                            label="Last Used"
-                            required
                             error={field.state.meta.errors[0]?.toString()}
+                            label="Category"
                         >
-                            <input
-                                type="date"
-                                className={cn(inputClass)}
-                                {...bindField(field)}
+                            <CategorySelector
+                                value={field.state.value}
+                                onChange={field.handleChange}
                             />
                         </FormField>
                     )}
                 </form.Field>
 
+            </div>
+
+            <div
+                className="py-3 grid grid-cols-2 gap-4"
+            >
+
                 <form.Field
-                    name="renewalDate"
+                    name="purchaseDate"
                     validators={{
                         onChange: ({ value }: { value: string }) =>
-                            !value ? "Renewal date is required" : undefined,
+                            !value ? "Purchase date is required" : undefined,
                     }}
                 >
                     {(field: any) => (
                         <FormField
-                            label="Next Renewal"
+                            label="Purchase Date"
                             required
                             error={field.state.meta.errors[0]?.toString()}
                         >
                             <input
                                 type="date"
                                 className={cn(inputClass)}
+                                value={formatDate(field.state.value)}
+                                onChange={(e) =>
+                                    field.handleChange(e.target.value)
+                                }
+                            />
+                        </FormField>
+                    )}
+                </form.Field>
+
+                <div>
+                    Renewal date
+                </div>
+
+            </div>
+
+            <div className="py-3" >
+
+                <form.Field name="notes">
+                    {(field: any) => (
+                        <FormField
+                            hint="Optional — any context about this subscription"
+                            label="Notes"
+                        >
+                            <textarea
+                                placeholder="e.g. Shared with family, or considering cancelling"
+                                className={cn(
+                                    inputClass,
+                                    "resize-none min-h-[72px]"
+                                )}
                                 {...bindField(field)}
                             />
                         </FormField>
                     )}
                 </form.Field>
             </div>
-
-            <form.Field name="notes">
-                {(field: any) => (
-                    <FormField
-                        hint="Optional — any context about this subscription"
-                        label="Notes"
-                    >
-                        <textarea
-                            placeholder="e.g. Shared with family, or considering cancelling"
-                            className={cn(inputClass, "resize-none min-h-[72px]")}
-                            {...bindField(field)}
-                        />
-                    </FormField>
-                )}
-            </form.Field>
         </>
     );
 };

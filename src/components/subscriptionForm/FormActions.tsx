@@ -10,9 +10,9 @@ const FormActions = ({ form, isEdit, saved, handleBack }: any) => {
             <form.Subscribe selector={(s: any) => s.canSubmit}>
                 {(canSubmit: boolean) => (
                     <Button
+                        type="submit"
                         variant="primary"
                         size="lg"
-                        onClick={() => form.handleSubmit()}
                         disabled={!canSubmit}
                         icon={saved ? <Save /> : <PlusCircle />}
                     >

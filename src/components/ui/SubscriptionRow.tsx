@@ -4,7 +4,7 @@ import { motion } from 'motion/react';
 import type { Subscription } from '../../types';
 import Badge from './Badge';
 import Button from './Button';
-import { formatRupees, getDaysAgo, getDaysUntil } from '../../utils/calculations';
+import { formatRupees, getDaysAgo, getDaysUntil, getRenewalInfo } from '../../utils/calculations';
 import { cardVariants, hoverScale } from '../animations/variants';
 import Clock from '../icons/Clock';
 import Calendar from '../icons/Calendar';
@@ -21,7 +21,10 @@ interface SubscriptionRowProps {
 const SubscriptionRow = memo(({ subscription, onDelete }: SubscriptionRowProps) => {
     const navigate = useNavigate();
     const daysAgo = getDaysAgo(subscription.lastUsed);
-    const daysUntil = getDaysUntil(subscription.renewalDate);
+    const renewal = getRenewalInfo(
+        subscription.purchaseDate,
+        subscription.billingCycle
+    );
 
     const handleEdit = useCallback(
         () => navigate(`/edit/${subscription.id}`),
@@ -37,7 +40,7 @@ const SubscriptionRow = memo(({ subscription, onDelete }: SubscriptionRowProps) 
         <motion.div
             variants={cardVariants}
             whileHover={hoverScale}
-            className="flex bg-(--color-surface) border-[1px] border-(--color-border) border-dashed items-center gap-4 p-4 relative"
+            className="grid grid-cols-[2fr_1fr_1fr_1fr_0.8fr_1.2fr] items-center gap-4 p-4 relative bg-(--color-surface) border-[1px] border-(--color-border) border-dashed"
         >
 
             <Corners />
@@ -60,7 +63,7 @@ const SubscriptionRow = memo(({ subscription, onDelete }: SubscriptionRowProps) 
                 </div>
             </div>
 
-            <div className="w-28 text-right">
+            <div className="text-right">
                 <p className="text-sm text-(--color-text) font-bold">
                     {formatRupees(subscription.cost)}
                 </p>
@@ -69,7 +72,7 @@ const SubscriptionRow = memo(({ subscription, onDelete }: SubscriptionRowProps) 
                 </p>
             </div>
 
-            <div className="w-32 flex items-center gap-1.5">
+            <div className="flex items-center gap-1.5">
                 <Clock className='text-(--color-text-dim)' />
                 <p
                     className={cn(
@@ -85,21 +88,21 @@ const SubscriptionRow = memo(({ subscription, onDelete }: SubscriptionRowProps) 
             </div>
 
 
-            <div className="w-32 flex items-center gap-1.5">
+            <div className="flex items-center gap-1.5">
                 <Calendar className='text-(--color-text-dim)' />
                 <p
                     className={cn(
                         "text-xs",
-                        daysUntil <= 7
+                        renewal.days <= 7
                             ? 'text-(--color-warning)'
                             : 'text-(--color-text-muted)',
                     )}
                 >
-                    {daysUntil <= 0 ? 'Overdue' : `in ${daysUntil}d`}
+                    {renewal?.label}
                 </p>
             </div>
 
-            <div className="w-24 flex justify-center">
+            <div className="flex justify-center">
                 <Badge variant={subscription.status}>{subscription.status}</Badge>
             </div>
 

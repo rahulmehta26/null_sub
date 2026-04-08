@@ -18,8 +18,8 @@ export interface Subscription {
   category: SubscriptionCategory;
   cost: number;
   billingCycle: BillingCycle;
+  purchaseDate: string;
   lastUsed: string;
-  renewalDate: string;
   status: SubscriptionStatus;
   logo?: string;
   notes?: string;
@@ -29,7 +29,7 @@ export interface Subscription {
 export interface SubscriptionStore {
   subscriptions: Subscription[];
   addSubscription: (
-    sub: Omit<Subscription, "id" | "createdAt" | "status">,
+    sub: Omit<Subscription, "id" | "createdAt" | "status" | "lastUsed">,
   ) => void;
   updateSubscription: (id: string, sub: Partial<Subscription>) => void;
   deleteSubscription: (id: string) => void;

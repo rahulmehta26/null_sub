@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 import type { Alert, Subscription } from '../types';
-import { getDaysAgo, getDaysUntil } from '../utils/calculations';
+import { getDaysAgo, getRenewalInfo } from '../utils/calculations';
 
 
 export const useAlerts = (subscriptions: Subscription[]): Alert[] => {
@@ -9,7 +9,10 @@ export const useAlerts = (subscriptions: Subscription[]): Alert[] => {
 
         subscriptions.forEach((sub) => {
             const daysUnused = getDaysAgo(sub.lastUsed);
-            const daysUntilRenewal = getDaysUntil(sub.renewalDate);
+            const renewal = getRenewalInfo(
+                sub.purchaseDate,
+                sub.billingCycle
+            )
 
             if (daysUnused > 30) {
                 alerts.push({
@@ -22,14 +25,14 @@ export const useAlerts = (subscriptions: Subscription[]): Alert[] => {
                 });
             }
 
-            if (daysUntilRenewal >= 0 && daysUntilRenewal <= 7) {
+            if (renewal?.days >= 0 && renewal?.days <= 7) {
                 alerts.push({
                     id: `expiring-${sub.id}`,
                     subscriptionId: sub.id,
                     subscriptionName: sub.name,
                     type: 'expiring',
-                    message: `${sub.name} renews in ${daysUntilRenewal} day${daysUntilRenewal === 1 ? '' : 's'}`,
-                    severity: daysUntilRenewal <= 2 ? 'high' : 'low',
+                    message: `${sub.name} renews in ${renewal?.days} day${renewal?.days === 1 ? '' : 's'}`,
+                    severity: renewal?.days <= 2 ? 'high' : 'low',
                 });
             }
 
