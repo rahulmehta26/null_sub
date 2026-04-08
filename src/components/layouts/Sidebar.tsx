@@ -10,6 +10,7 @@ import { navItemVariants } from '../animations/variants';
 import BarChart from '../icons/BarChart';
 import { Corners } from '../ui/Corners';
 import { cn } from '../../utils/cn';
+import logo from "../../assets/nullSub.png"
 
 const NAV_ITEMS = [
     { label: 'Dashboard', path: '/dashboard', icon: DashboardIcon },
@@ -34,16 +35,23 @@ const Sidebar = memo(() => {
         <aside
             className="fixed bg-(--color-surface) border-r-[1.5px] border-dashed border-(--color-border-dashed) left-0 top-0 h-screen w-64 flex flex-col z-40"
         >
-            <motion.div
+            <motion.button
+                onClick={() => navigate("/")}
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4 }}
-                className="px-6 py-7 flex items-center gap-3"
+                className="px-6 py-7 cursor-pointer flex items-center gap-3"
+                type='button'
             >
                 <div
-                    className="w-8 h-8 rounded-lg bg-(--color-primary-glow) border-[1px] border-[--color-primary]  flex items-center justify-center"
+                    className="w-10 h-10 rounded-lg bg-(--color-primary-glow) border-[1px] border-[--color-primary]  flex items-center justify-center"
                 >
-                    n
+                    <img
+                        src={logo}
+                        loading="lazy"
+                        className='object-cover w-full h-full '
+                        alt='NullSub illustration'
+                    />
                 </div>
                 <div>
                     <h1
@@ -55,7 +63,7 @@ const Sidebar = memo(() => {
                         Null the waste.
                     </p>
                 </div>
-            </motion.div>
+            </motion.button>
 
             <div className="mx-4 bg-(--color-border) h-px" />
 
@@ -101,17 +109,6 @@ const Sidebar = memo(() => {
                 })}
             </nav>
 
-            <div className="px-4 py-5">
-                <div
-                    className="rounded-lg p-3 text-xs bg-(--color-surface-2) text-(--color-text-muted) border-[1.5px] border-dashed border-(--color-border-dashed) "
-
-                >
-                    <p className="font-semibold text-(--color-accent) mb-1">
-                        💡 Did you know?
-                    </p>
-                    Indians waste ₹2,400/year on forgotten subscriptions on average.
-                </div>
-            </div>
         </aside>
     );
 });

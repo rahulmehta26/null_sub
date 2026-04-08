@@ -6,6 +6,7 @@ import Button from '../../components/ui/Button';
 import { Corners } from '../../components/ui/Corners';
 import ArrowRight from '../../components/icons/ArrowRight';
 import DashedBorder from '../../components/ui/DashedBorder';
+import logo from "../../assets/nullSub.png"
 
 
 const LandingCTA = memo(() => {
@@ -99,17 +100,33 @@ const LandingCTA = memo(() => {
                 className="mx-auto pb-8 flex items-center justify-between"
             >
 
-                <div>
+                <div
+                    className='flex gap-2 items-center'
+                >
 
-                    <p
-                        className="text-sm font-(--font-display) text-(--color-text) font-bold"
+                    <div
+                        className="w-8 h-8 rounded-lg bg-(--color-primary-glow) border-[1px] border-[--color-primary]  flex items-center justify-center"
                     >
-                        NullSub
-                    </p>
+                        <img
+                            src={logo}
+                            loading="lazy"
+                            className='object-cover w-full h-full '
+                            alt='NullSub illustration'
+                        />
+                    </div>
 
-                    <p className="text-xs text-(--color-text-muted)">
-                        Null the waste.
-                    </p>
+                    <div>
+                        <p
+                            className="text-sm font-(--font-display) text-(--color-text) font-bold"
+                        >
+                            NullSub
+                        </p>
+
+                        <p className="text-xs text-(--color-text-muted)">
+                            Null the waste.
+                        </p>
+                    </div>
+
                 </div>
                 <p className="text-xs text-(--color-text-muted)">
                     Built with React · Inspired by {" "}

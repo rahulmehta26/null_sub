@@ -1,10 +1,9 @@
 import { memo, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'motion/react';
-import Clock from '../../components/icons/Clock';
 import Button from '../../components/ui/Button';
 import ArrowRight from '../../components/icons/ArrowRight';
-
+import logo from "../../assets/nullSub.png"
 
 const LandingNav = memo(() => {
     const navigate = useNavigate();
@@ -37,9 +36,14 @@ const LandingNav = memo(() => {
 
                 <div className="flex items-center gap-2.5">
                     <div
-                        className="w-7 h-7 border[1.5px] border-dashed border-(--color-border-dashed) bg-(--color-surface) rounded-md flex items-center justify-center"
+                        className="w-8 h-8 rounded-lg bg-(--color-primary-glow) border-[1px] border-[--color-primary]  flex items-center justify-center"
                     >
-                        <Clock />
+                        <img
+                            src={logo}
+                            loading="lazy"
+                            className='object-cover w-full h-full '
+                            alt='NullSub illustration'
+                        />
                     </div>
                     <span
                         className="text-base font-(--font-display) text-(--color-text) font-bold tracking-tight"
