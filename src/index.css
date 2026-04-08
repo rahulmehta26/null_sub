@@ -78,56 +78,6 @@
   }
 }
 
-@layer utilities {
-
-  .card-dashed {
-    background: var(--color-surface);
-    border: 1.5px dashed var(--color-border-dashed);
-    border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-card);
-  }
-
-  .btn-corner {
-    position: relative;
-    background: transparent;
-    border: 1.5px dashed var(--color-border-dashed);
-    color: var(--color-text);
-  }
-
-  .btn-corner::before,
-  .btn-corner::after {
-    content: '';
-    position: absolute;
-    width: var(--corner-size);
-    height: var(--corner-size);
-  }
-
-  .btn-corner::before {
-    top: -var(--corner-weight);
-    left: -var(--corner-weight);
-    border-top: var(--corner-weight) solid var(--color-primary);
-    border-left: var(--corner-weight) solid var(--color-primary);
-  }
-
-  .btn-corner::after {
-    bottom: -var(--corner-weight);
-    right: -var(--corner-weight);
-    border-bottom: var(--corner-weight) solid var(--color-primary);
-    border-right: var(--corner-weight) solid var(--color-primary);
-  }
-
-  .ruled {
-    border-top: 1px dashed var(--color-border-dashed);
-  }
-
-  .text-gradient {
-    background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-}
-
 html {
   scroll-behavior: smooth;
 }
