@@ -63,13 +63,13 @@ const LandingCTA = memo(() => {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.5 }}
-                    className="relative bg-(--color-surface) border-[1.5px] border-dashed border-(--color-border-dashed) p-12 flex flex-col items-start gap-6 overflow-hidden"
+                    className="relative bg-(--color-surface) border-[1.5px] border-dashed border-(--color-border-dashed) p-12 flex flex-col items-start gap-6"
 
                 >
                     <Corners
-                        offset='1%'
-                        borderSize='4'
-                        className='w-8 h-8'
+                        offset='sm'
+                        borderSize='3'
+                        className='w-6 h-6'
                     />
 
                     <h2

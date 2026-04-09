@@ -16,7 +16,6 @@ interface StatCardProps {
     className?: string
 }
 
-
 const StatCard = memo(({
     label,
     value,

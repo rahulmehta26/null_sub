@@ -48,7 +48,8 @@ const FilterBar = memo(
             <div className="flex flex-col gap-3">
                 <div className="relative border border-dashed">
 
-                    <Corners />
+                    <Corners className="h-2 w-2" offset="md" />
+
                     <Search className="absolute text-(--color-text-dim) left-3 top-1/2 -translate-y-1/2" />
 
                     <input

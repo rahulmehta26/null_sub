@@ -22,7 +22,7 @@ const LandingHero = memo(() => {
                 <span
                     className="inline-flex relative font-(--font-mono) border-[1.5px] border-dashed border-(--color-border-dashed) text-(--color-text-muted) items-center gap-2 text-xs font-semibold px-3 py-1.5"
                 >
-                    <Corners className='w-1.5 h-1.5' offset='18%' />
+                    <Corners className='w-1.5 h-1.5' offset='lg' />
                     <span
                         className="w-1.5 h-1.5 bg-(--color-accent) animate-pulse transition-all duration-300 rounded-full"
                     />
@@ -67,10 +67,9 @@ const LandingHero = memo(() => {
                     variant='dashed'
                     onClick={() => navigate('/dashboard')}
                     type='button'
-                    className='rounded-none'
-                    dashed={true}
-                    cornerClassName='w-2 h-2'
+                    className='rounded-none!'
                 >
+                    <Corners className='h-2 w-2' offset='md' />
                     See Demo
                 </Button>
 
