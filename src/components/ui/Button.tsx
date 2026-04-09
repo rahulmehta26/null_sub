@@ -2,6 +2,7 @@ import { memo } from 'react';
 import { motion } from 'motion/react';
 import { Corners } from './Corners';
 import { tapScale } from '../animations/variants';
+import { cn } from '../../utils/cn';
 
 
 type ButtonVariant = 'primary' | 'outline' | 'dashed' | 'danger' | 'ghost';
@@ -26,27 +27,30 @@ const SIZE_CLASSES: Record<ButtonSize, string> = {
 };
 
 
-const getVariantStyle = (variant: ButtonVariant): React.CSSProperties => {
-  switch (variant) {
-    case 'primary':
-      return { background: 'var(--color-primary)', color: '#fff', border: '1.5px solid var(--color-primary)' };
-    case 'outline':
-      return { background: 'transparent', color: 'var(--color-text)', border: '1.5px solid var(--color-primary)' };
-    case 'dashed':
-      return { background: 'var(--color-surface)', color: 'var(--color-text)', border: '1.5px dashed var(--color-border-dashed)' };
-    case 'danger':
-      return { background: 'var(--color-danger-glow)', color: 'var(--color-danger)', border: '1.5px dashed rgba(192,57,43,0.35)' };
-    case 'ghost':
-      return { background: 'transparent', color: 'var(--color-text-muted)', border: '1.5px solid transparent' };
-  }
+const VARIANT_CLASSES: Record<ButtonVariant, string> = {
+  primary:
+    "bg-[var(--color-primary)] text-white border border-[var(--color-primary)]",
+  outline:
+    "bg-transparent text-[var(--color-text)] border border-[var(--color-primary)]",
+  dashed:
+    "bg-[var(--color-surface)] text-[var(--color-text)] border border-dashed border-[var(--color-border-dashed)]",
+  danger:
+    "bg-[var(--color-danger-glow)] text-[var(--color-danger)] border border-dashed border-[rgba(192,57,43,0.35)]",
+  ghost:
+    "bg-transparent text-[var(--color-text-muted)] border border-transparent",
 };
 
 const Button = memo(({
-  children, variant = 'primary', size = 'md',
-  onClick, disabled = false, type = 'button',
-  className = '', icon,
+  children,
+  variant = 'primary',
+  size = 'md',
+  onClick,
+  disabled = false,
+  type = 'button',
+  className = '',
+  icon,
 }: ButtonProps) => {
-  const isDashed = variant === 'dashed';
+
 
   return (
     <motion.button
@@ -55,17 +59,21 @@ const Button = memo(({
       disabled={disabled}
       whileTap={!disabled ? tapScale : undefined}
       whileHover={!disabled ? { y: -1, transition: { duration: 0.15 } } : undefined}
-      className={`relative inline-flex items-center gap-2 font-semibold ${SIZE_CLASSES[size]} ${className}`}
+      className={cn(
+        "relative inline-flex items-center gap-2 font-semibold",
+        SIZE_CLASSES[size],
+        VARIANT_CLASSES[variant],
+        disabled
+          ? "opacity-[0.45] cursor-not-allowed"
+          : "cursor-pointer",
+        className
+      )}
       style={{
-        ...getVariantStyle(variant),
-        opacity: disabled ? 0.45 : 1,
-        cursor: disabled ? 'not-allowed' : 'pointer',
-        fontFamily: 'var(--font-body)',
-        borderRadius: 'var(--radius-sm)',
-        letterSpacing: '0.01em',
+        fontFamily: "var(--font-body)",
+        borderRadius: "var(--radius-sm)",
+        letterSpacing: "0.01em",
       }}
     >
-      {isDashed && <Corners />}
       {icon && <span className="flex items-center">{icon}</span>}
       {children}
     </motion.button>
