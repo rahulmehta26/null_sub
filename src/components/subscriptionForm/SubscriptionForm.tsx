@@ -5,6 +5,7 @@ import BillingCycleSelector from "./BillingCycleSelector";
 import CategorySelector from "./CategorySelector";
 import EmojiPicker from "./EmojiPicker";
 import { cn } from "../../utils/cn";
+import { getRenewalInfo } from "../../utils/calculations";
 
 const formatDate = (date: string) => {
     if (!date) return "";
@@ -12,6 +13,15 @@ const formatDate = (date: string) => {
 };
 
 const SubscriptionForm = ({ form }: any) => {
+
+    const purchaseDate = form.getFieldValue("purchaseDate");
+    const billingCycle = form.getFieldValue("billingCycle");
+
+    const renewal =
+        purchaseDate && billingCycle
+            ? getRenewalInfo(purchaseDate, billingCycle)
+            : null;
+
     return (
         <>
             <div className="grid grid-cols-3 pb-3 gap-4">
@@ -154,8 +164,25 @@ const SubscriptionForm = ({ form }: any) => {
                     )}
                 </form.Field>
 
-                <div>
-                    Renewal date
+                <div className="flex flex-col justify-center text-sm">
+                    <p className="text-(--color-text-muted)">Renewal</p>
+
+                    {renewal ? (
+                        <p className="text-(--color-text) font-semibold">
+                            {renewal?.date.toLocaleDateString("en-IN", {
+                                day: "numeric",
+                                month: "short",
+                                year: "numeric",
+                            })}
+                            <span className="ml-2 text-(--color-text-muted)">
+                                ({renewal.label})
+                            </span>
+                        </p>
+                    ) : (
+                        <p className="text-(--color-text-dim)">
+                            Select date & cycle
+                        </p>
+                    )}
                 </div>
 
             </div>

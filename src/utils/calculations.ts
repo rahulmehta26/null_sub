@@ -20,13 +20,37 @@ export const getNextRenewalDate = (
   return date;
 };
 
-export const getRenewalInfo = (purchaseDate: string, billingCycle: string) => {
-  const renewalDate = getNextRenewalDate(purchaseDate, billingCycle);
+export const getRenewalInfo = (
+  purchaseDate: string,
+  billingCycle: "monthly" | "yearly" | "quarterly",
+) => {
+  const purchase = new Date(purchaseDate);
+  const now = new Date();
 
-  const days = Math.ceil((renewalDate.getTime() - Date.now()) / 86400000);
+  const renewal = new Date(purchase);
 
-  if (days < 0) return { label: "Overdue", days };
-  return { label: `in ${days}d`, days };
+  if (billingCycle === "monthly") {
+    renewal.setMonth(renewal.getMonth() + 1);
+  } else if (billingCycle === "quarterly") {
+    renewal.setMonth(renewal.getMonth() + 3);
+  } else if (billingCycle === "yearly") {
+    renewal.setFullYear(renewal.getFullYear() + 1);
+  }
+
+  const diff = renewal.getTime() - now.getTime();
+  const days = Math.ceil(diff / 86400000);
+
+  let label = "";
+
+  if (days <= 0) label = "Overdue";
+  else if (days === 0) label = "Today";
+  else label = `in ${days}d`;
+
+  return {
+    date: renewal,
+    days,
+    label,
+  };
 };
 
 export const computeStatus = (
