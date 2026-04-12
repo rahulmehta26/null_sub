@@ -60,7 +60,7 @@ const Button = memo(({
       whileTap={!disabled ? tapScale : undefined}
       whileHover={!disabled ? { y: -1, transition: { duration: 0.15 } } : undefined}
       className={cn(
-        "relative inline-flex items-center gap-2 font-semibold",
+        "relative flex justify-center items-center gap-2 font-semibold",
         SIZE_CLASSES[size],
         VARIANT_CLASSES[variant],
         disabled
