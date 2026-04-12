@@ -28,7 +28,7 @@ const LandingNav = memo(() => {
             initial={{ opacity: 0, y: -8 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4 }}
-            className="w-full border-b-[1px] border-dashed border-(--color-border-dashed) backdrop-blur-[10px] bg-[rgba(249,249,247,0.85)] fixed top-0 left-0 right-0 z-50 px-16 py-4"
+            className="w-full border-b-[1px] border-dashed border-(--color-border-dashed) backdrop-blur-[10px] bg-[rgba(249,249,247,0.85)] fixed top-0 left-0 right-0 z-50 px-2 md:px-16 py-2 md:py-4"
         >
             <div
                 className="max-w-4xl mx-auto flex items-center justify-between"
@@ -52,7 +52,7 @@ const LandingNav = memo(() => {
                     </span>
                 </div>
 
-                <div className="flex items-center gap-8">
+                <div className="flex hidden md:flex items-center gap-8">
                     {navItems?.map(({ title: link, href, id }) => (
                         <a
                             href={href}
@@ -68,6 +68,8 @@ const LandingNav = memo(() => {
                     variant='primary'
                     onClick={handleApp}
                     type='button'
+                    className=''
+                    size='sm'
                 >
                     Open App
 

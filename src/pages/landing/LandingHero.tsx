@@ -18,21 +18,18 @@ const LandingHero = memo(() => {
             animate="visible"
             className="flex flex-col items-start w-full mx-auto"
         >
-            <motion.div variants={cardVariants} className="mb-8">
-                <span
-                    className="inline-flex relative font-(--font-mono) border-[1.5px] border-dashed border-(--color-border-dashed) text-(--color-text-muted) items-center gap-2 text-xs font-semibold px-3 py-1.5"
-                >
+            <motion.div variants={cardVariants} className="mb-6 md:mb-8">
+                <span className="inline-flex relative font-(--font-mono) border-[1.5px] border-dashed border-(--color-border-dashed) text-(--color-text-muted) items-center gap-2 text-[10px] md:text-xs font-semibold px-3 py-1.5">
                     <Corners className='w-1.5 h-1.5' offset='lg' />
-                    <span
-                        className="w-1.5 h-1.5 bg-(--color-accent) animate-pulse transition-all duration-300 rounded-full"
-                    />
-                    Built for India · Validated by Razorpay Fix My Itch
+                    <span className="w-1.5 h-1.5 bg-(--color-accent) animate-pulse rounded-full" />
+                    <span className="sm:hidden">Validated by Razorpay Fix My Itch</span>
+                    <span className="hidden sm:inline">Built for India · Validated by Razorpay Fix My Itch</span>
                 </span>
             </motion.div>
 
             <motion.h1
                 variants={cardVariants}
-                className="text-7xl font-bold text-shadow-xs leading-none text-(--color-text) font-(--font-display) tracking-tight mb-6"
+                className="text-3xl sm:text-5xl md:text-7xl font-bold leading-none text-(--color-text) font-(--font-display) tracking-tight mb-4 md:mb-6"
             >
                 Null the waste.
                 <br />
@@ -43,7 +40,7 @@ const LandingHero = memo(() => {
 
             <motion.p
                 variants={cardVariants}
-                className="text-lg max-w-xl mb-10 text-(--color-text-muted) leading-relaxed"
+                className="text-sm md:text-lg max-w-xs md:max-w-xl mb-10 text-(--color-text-muted) leading-relaxed"
             >
                 Track every subscription — Netflix, Spotify, Hotstar and more.
                 See what you use, flag what you don't, and stop paying for forgotten ones.
@@ -51,7 +48,7 @@ const LandingHero = memo(() => {
 
             <motion.div
                 variants={cardVariants}
-                className="flex items-center gap-4"
+                className="flex flex-wrap items-center gap-4"
             >
 
                 <Button

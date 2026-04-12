@@ -25,12 +25,12 @@ const LandingCTA = memo(() => {
                     initial={{ opacity: 0, y: 12 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    className="text-xs font-bold uppercase tracking-widest font-(--font-mono) text-(--color-text-muted) mb-10"
+                    className="md:text-xs font-bold uppercase tracking-widest font-(--font-mono) text-(--color-text-muted) mb-10"
                 >
                     How It Works
                 </motion.p>
 
-                <div className="grid grid-cols-3 gap-6">
+                <div className="grid text-center md:text-start md:grid-cols-3 gap-6">
                     {STEPS?.map((step, i) => (
                         <motion.div
                             key={step.num}
@@ -63,7 +63,7 @@ const LandingCTA = memo(() => {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.5 }}
-                    className="relative bg-(--color-surface) border-[1.5px] border-dashed border-(--color-border-dashed) p-12 flex flex-col items-start gap-6"
+                    className="relative bg-(--color-surface) border-[1.5px] border-dashed border-(--color-border-dashed) p-6 md:p-12 flex flex-col items-start gap-6"
 
                 >
                     <Corners
@@ -73,11 +73,11 @@ const LandingCTA = memo(() => {
                     />
 
                     <h2
-                        className="text-4xl text-shadow-2xs font-bold font-(--font-display) text(--color-text) tracking-tight"
+                        className="text-2xl md:text-4xl text-shadow-2xs font-bold font-(--font-display) text(--color-text) tracking-tight"
                     >
                         Stop paying for what<br />you don't use.
                     </h2>
-                    <p className="text-base max-w-md text-(--color-text-muted)" >
+                    <p className="text-sm md:text-base max-w-md text-(--color-text-muted)" >
                         NullSub is free, needs no account, and works instantly in your browser.
                         Your data stays on your device — always.
                     </p>
@@ -97,7 +97,7 @@ const LandingCTA = memo(() => {
             <DashedBorder />
 
             <footer
-                className="mx-auto pb-8 flex items-center justify-between"
+                className="mx-auto pb-8 flex flex-col gap-4 md:flex-row md:items-center justify-between"
             >
 
                 <div
@@ -128,6 +128,7 @@ const LandingCTA = memo(() => {
                     </div>
 
                 </div>
+
                 <p className="text-xs text-(--color-text-muted)">
                     Built with React · Inspired by {" "}
                     <span className='text-(--color-text)'>Razorpay Fix My Itch</span>

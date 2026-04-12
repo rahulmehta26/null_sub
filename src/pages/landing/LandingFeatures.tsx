@@ -8,7 +8,7 @@ import DashedBorder from '../../components/ui/DashedBorder';
 const LandingFeatures = memo(() => {
     return (
         <section
-            className="pt-8 w-full"
+            className="pt-4 md:pt-8 w-full"
             id="features"
         >
 
@@ -22,12 +22,12 @@ const LandingFeatures = memo(() => {
                 className="mb-12"
             >
                 <p
-                    className="text-xs text-(--color-text-muted) font-(--font-mono) font-bold uppercase tracking-widest mb-3"
+                    className="text-[10px] md:text-xs text-(--color-text-muted) font-(--font-mono) font-bold uppercase tracking-widest mb-3"
                 >
                     Why NullSub
                 </p>
                 <h2
-                    className="text-4xl text-shadow-2xs font-bold tracking-tight text-(--color-text) font-(--font-display)"
+                    className="text-2xl md:text-4xl text-shadow-2xs font-bold tracking-tight text-(--color-text) font-(--font-display)"
                 >
                     Everything you need.
                     <br />
@@ -40,7 +40,7 @@ const LandingFeatures = memo(() => {
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true }}
-                className="grid grid-cols-2 gap-4"
+                className="grid md:grid-cols-2 gap-4"
             >
                 {FEATURES?.map((f) => {
                     const Icon = f.icon;
@@ -48,7 +48,7 @@ const LandingFeatures = memo(() => {
                         <motion.div
                             key={f.title}
                             variants={cardVariants}
-                            className="p-6 relative flex flex-col gap-4 bg-(--color-surface) border-[1.5px] border-dashed border-(--color-border-dashed) "
+                            className="p-4 md:p-6 relative flex flex-col gap-4 bg-(--color-surface) border-[1.5px] border-dashed border-(--color-border-dashed) "
                         >
 
                             <Corners />
