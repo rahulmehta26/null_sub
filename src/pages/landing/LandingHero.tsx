@@ -72,7 +72,11 @@ const LandingHero = memo(() => {
 
             </motion.div>
 
-            <LandingMarquee />
+            <div className="overflow-hidden w-xs md:w-full">
+
+
+                <LandingMarquee />
+            </div>
 
         </motion.section>
     );
