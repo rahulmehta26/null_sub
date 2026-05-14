@@ -1,6 +1,5 @@
 import { memo } from 'react';
 import { motion } from 'motion/react';
-import { Corners } from './Corners';
 import { tapScale } from '../animations/variants';
 import { cn } from '../../utils/cn';
 

@@ -4,7 +4,7 @@ import { motion } from 'motion/react';
 import type { Subscription } from '../../types';
 import Badge from './Badge';
 import Button from './Button';
-import { formatRupees, getDaysAgo, getDaysUntil, getRenewalInfo } from '../../utils/calculations';
+import { formatRupees, getDaysAgo, getRenewalInfo } from '../../utils/calculations';
 import { cardVariants, hoverScale } from '../animations/variants';
 import Clock from '../icons/Clock';
 import Calendar from '../icons/Calendar';

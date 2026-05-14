@@ -1,4 +1,3 @@
-import React from "react";
 import { cn } from "../../utils/cn";
 
 const TrendingDown = ({ className, ...props }: { className?: string }) => {
